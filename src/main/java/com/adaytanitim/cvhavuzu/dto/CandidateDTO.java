@@ -1,12 +1,14 @@
 package com.adaytanitim.cvhavuzu.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
+
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CandidateDTO {
     private Long userid;
     private String ad;
@@ -20,4 +22,6 @@ public class CandidateDTO {
     private String telefon;
     private Integer yetki;
     private KisiselGelisimDTO kisiselGelisim;
+
+
 }

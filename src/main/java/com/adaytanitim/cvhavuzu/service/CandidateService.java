@@ -10,5 +10,5 @@ public interface CandidateService {
     Candidate updateCandidate(Candidate candidate);
     void deleteCandidate(String userID);
     Optional<CandidateDTO> getCandidateById(String userID);
-    List<Candidate> getAllCandidates();
+    List<CandidateDTO> getAllCandidates();
 }
