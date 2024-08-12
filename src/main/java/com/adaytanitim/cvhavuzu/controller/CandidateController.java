@@ -1,6 +1,7 @@
 package com.adaytanitim.cvhavuzu.controller;
 
 import com.adaytanitim.cvhavuzu.dto.CandidateDTO;
+import com.adaytanitim.cvhavuzu.dto.KisiselGelisimDTO;
 import com.adaytanitim.cvhavuzu.model.Candidate;
 import com.adaytanitim.cvhavuzu.model.KisiselGelisim;
 import com.adaytanitim.cvhavuzu.service.CandidateService;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -93,8 +95,10 @@ public class CandidateController {
     }*/
 
     @GetMapping
-    public ResponseEntity<List<Candidate>> getAllCandidates() {
-        List<Candidate> candidates = candidateService.getAllCandidates();
-        return new ResponseEntity<>(candidates, HttpStatus.OK);
+    public ResponseEntity<List<CandidateDTO>> getAllCandidates() {
+        List<CandidateDTO> candidateDTOList = candidateService.getAllCandidates();
+        return new ResponseEntity<>(candidateDTOList, HttpStatus.OK);
     }
+
+
 }

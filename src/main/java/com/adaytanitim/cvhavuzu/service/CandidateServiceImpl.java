@@ -8,6 +8,7 @@ import com.adaytanitim.cvhavuzu.repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,8 +73,36 @@ public class CandidateServiceImpl implements CandidateService {
         return candidateRepository.findById(userID);
     }*/
 
-    @Override
-    public List<Candidate> getAllCandidates() {
-        return candidateRepository.findAll();
+    public List<CandidateDTO> getAllCandidates() {
+        List<Candidate> candidates = candidateRepository.findAll();
+        List<CandidateDTO> candidateDTOList = new ArrayList<>();
+
+        for (Candidate candidate : candidates) {
+            CandidateDTO candidateDTO = new CandidateDTO();
+            candidateDTO.setAd(candidate.getAd());
+            candidateDTO.setSoyad(candidate.getSoyad());
+            candidateDTO.setAdres(candidate.getAdres());
+            candidateDTO.setAktifCalisiyorMu(candidate.getAktifCalisiyorMu());
+            candidateDTO.setEmail(candidate.getEmail());
+            candidateDTO.setIseBaslamaTarihi(candidate.getIseBaslamaTarihi());
+            candidateDTO.setIstenCikisTarihi(candidate.getIstenCikisTarihi());
+            candidateDTO.setSirketIsmi(candidate.getSirketIsmi());
+            candidateDTO.setTelefon(candidate.getTelefon());
+            candidateDTO.setYetki(candidate.getYetki());
+
+            // Kişisel Gelişim DTO'yu ayarlama
+            if (candidate.getKisiselGelisim() != null) {
+                KisiselGelisimDTO kisiselGelisimDTO = new KisiselGelisimDTO();
+                kisiselGelisimDTO.setSosyalMedyaLinki(candidate.getKisiselGelisim().getSosyalMedyaLinki());
+                kisiselGelisimDTO.setGithubLinki(candidate.getKisiselGelisim().getGithubLinki());
+                kisiselGelisimDTO.setIsDeneyimleri(candidate.getKisiselGelisim().getIsDeneyimleri());
+                kisiselGelisimDTO.setSertifikalar(candidate.getKisiselGelisim().getSertifikalar());
+                candidateDTO.setKisiselGelisim(kisiselGelisimDTO);
+            }
+
+            candidateDTOList.add(candidateDTO);
+        }
+
+        return candidateDTOList;
     }
 }
