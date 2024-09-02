@@ -7,7 +7,6 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
 @Constraint(validatedBy = EmailValidator.class)     //email validatorde çalışacak
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER})    //alanda çalışacak
 @Retention(RetentionPolicy.RUNTIME)      //çalışma esnasında

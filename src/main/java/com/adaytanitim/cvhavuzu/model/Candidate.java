@@ -1,8 +1,8 @@
 package com.adaytanitim.cvhavuzu.model;
 
+import com.adaytanitim.cvhavuzu.enums.Yetki;
 import com.adaytanitim.cvhavuzu.validation.ValidEmail;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +21,7 @@ public class Candidate {
 
     //@NotNull(message = "ad boş olamaz")
     private String ad;
-    //@NotNull(message = "soyad boş olamaz")  //validasyon
+    @NotNull(message = "soyad boş olamaz")  //validasyon
     private String soyad;
     private String adres;
     private Boolean aktifCalisiyorMu;
@@ -31,7 +31,7 @@ public class Candidate {
     private LocalDate istenCikisTarihi;
     private String sirketIsmi;
     private String telefon;
-    private Integer yetki;
+    private Yetki yetki;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "kisisel_gelisim_id")
@@ -42,4 +42,7 @@ public class Candidate {
     }
 
 
+    public void setUserid(Long userid) {
+
+    }
 }
