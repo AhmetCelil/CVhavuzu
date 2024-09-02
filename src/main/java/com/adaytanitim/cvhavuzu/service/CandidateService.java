@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CandidateService {
-    Candidate saveCandidate(Candidate candidate);
+    Candidate saveCandidate(CandidateDTO candidateDTO);
     Candidate updateCandidate(Candidate candidate);
     void deleteCandidate(String userID);
     Optional<CandidateDTO> getCandidateById(String userID);
-    List<Candidate> getAllCandidates();
+    List<CandidateDTO> getAllCandidates();
 }

@@ -22,35 +22,8 @@ public class CandidateController {
     private CandidateService candidateService;
 
     @PostMapping("/add")
-    public ResponseEntity<Candidate> addCandidate(@RequestBody CandidateDTO candidateDTO) {
-        Candidate candidate = new Candidate();
-        candidate.setAd(candidateDTO.getAd());
-        candidate.setAdres(candidateDTO.getAdres());
-        candidate.setAktifCalisiyorMu(candidateDTO.getAktifCalisiyorMu());
-        candidate.setEmail(candidateDTO.getEmail());
-        candidate.setIseBaslamaTarihi(candidateDTO.getIseBaslamaTarihi());
-        candidate.setIstenCikisTarihi(candidateDTO.getIstenCikisTarihi());
-        candidate.setSirketIsmi(candidateDTO.getSirketIsmi());
-        candidate.setSoyad(candidateDTO.getSoyad());
-        candidate.setTelefon(candidateDTO.getTelefon());
-        candidate.setYetki(candidateDTO.getYetki());
-/*
-        KisiselGelisim kisiselGelisim = new KisiselGelisim();
-        kisiselGelisim.setSosyalMedyaLinki(candidateDTO.getKisiselGelisim().getSosyalMedyaLinki());
-        kisiselGelisim.setGithubLinki(candidateDTO.getKisiselGelisim().getGithubLinki());
-        kisiselGelisim.setIsDeneyimleri(candidateDTO.getKisiselGelisim().getIsDeneyimleri());
-        kisiselGelisim.setSertifikalar(candidateDTO.getKisiselGelisim().getSertifikalar());
-
-        candidate.setKisiselGelisim(kisiselGelisim);*/
-
-        Candidate savedCandidate = candidateService.saveCandidate(candidate);
-        return new ResponseEntity<>(savedCandidate, HttpStatus.CREATED);
-    }
-
-
-    @PostMapping
-    public ResponseEntity<Candidate> createCandidate(@RequestBody Candidate candidate) {
-        Candidate savedCandidate = candidateService.saveCandidate(candidate);
+    public ResponseEntity<Candidate> saveCandidate( @RequestBody CandidateDTO candidateDto) {
+        Candidate savedCandidate = candidateService.saveCandidate(candidateDto);
         return new ResponseEntity<>(savedCandidate, HttpStatus.CREATED);
     }
 
@@ -78,23 +51,9 @@ public class CandidateController {
         }
     }
 
-
-    /*@PostMapping("/add")
-    public ResponseEntity<Candidate> addCandidate(@RequestBody Candidate candidate) {
-        try {
-            Candidate savedCandidate = candidateService.saveCandidate(candidate);
-            return new ResponseEntity<>(savedCandidate, HttpStatus.CREATED);
-        } catch (Exception e) {
-            // Log the exception for debugging
-            e.printStackTrace();
-            // Return a 500 Internal Server Error
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }*/
-
-    @GetMapping
-    public ResponseEntity<List<Candidate>> getAllCandidates() {
-        List<Candidate> candidates = candidateService.getAllCandidates();
+    @GetMapping("/all-candidates")
+    public ResponseEntity<List<CandidateDTO>> getAllCandidates() {
+        List<CandidateDTO> candidates = candidateService.getAllCandidates();
         return new ResponseEntity<>(candidates, HttpStatus.OK);
     }
 }

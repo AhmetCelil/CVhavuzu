@@ -1,5 +1,8 @@
 package com.adaytanitim.cvhavuzu.dto;
 
+import com.adaytanitim.cvhavuzu.enums.Yetki;
+import com.adaytanitim.cvhavuzu.model.Candidate;
+import com.adaytanitim.cvhavuzu.validation.ValidEmail;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +10,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class CandidateDTO {
+public class CandidateDTO  {
     private Long userid;
     private String ad;
     private String adres;
@@ -18,6 +21,6 @@ public class CandidateDTO {
     private String sirketIsmi;
     private String soyad;
     private String telefon;
-    private Integer yetki;
+    private Yetki yetki;
     private KisiselGelisimDTO kisiselGelisim;
 }
